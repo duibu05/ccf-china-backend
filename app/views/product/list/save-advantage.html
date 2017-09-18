@@ -1,0 +1,65 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="SaveProductAdvantageCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">{{action}}产品卖点</h5>
+    </div>
+  </div>
+  <!-- tips -->
+  <!-- <div class="alert alert-success" role="alert" ng-if="action==='添加'"><b>提醒：</b><span>添加产品包括添加产品基本信息和添加产品卖点两部分，请保存基本信息后继续完成产品卖点编辑</span></div> -->
+  <!-- content -->
+  <form class="form-horizontal" id="saveProductAdvantageForm" name="saveProductAdvantageForm" novalidate role="form" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>卖点标题</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveProductAdvantageForm.title.$valid,'has-error has-feedback':saveProductAdvantageForm.title.$invalid&&saveProductAdvantageForm.title.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入产品卖点标题" name="title" ng-model="title" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveProductAdvantageForm.title.$invalid&&saveProductAdvantageForm.title.$dirty,'glyphicon-ok':saveProductAdvantageForm.title.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveProductAdvantageForm.title.$error.required&&saveProductAdvantageForm.title.$dirty">卖点标题为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>卖点描述</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveProductAdvantageForm.brief.$valid,'has-error has-feedback':saveProductAdvantageForm.brief.$invalid&&saveProductAdvantageForm.brief.$dirty}">
+        <textarea class="form-control" placeholder="请输入产品卖点描述" name="brief" ng-model="brief" required></textarea>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveProductAdvantageForm.brief.$invalid&&saveProductAdvantageForm.brief.$dirty,'glyphicon-ok':saveProductAdvantageForm.brief.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveProductAdvantageForm.brief.$error.required&&saveProductAdvantageForm.brief.$dirty">卖点描述为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>布局</span>
+      </label>
+      <div class="col-sm-3">
+      <select class="form-control bd-category-select pull-left" name="layout" ng-model="layout" ng-options="layoutModel._id as layoutModel.name for layoutModel in layoutModels" required></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>图片</span>
+      </label>
+      <div class="col-sm-3">
+        <div ngf-drop ngf-select ng-model="file" class="drop-box" ngf-drag-over-class="'dragover'" editor="editor" ngf-multiple="false" ngf-allow-dir="true" ngf-pattern="'image/*'">
+          <span ng-if="!url">拖动文件到这里或者点击上传</span>
+          <div ng-if="!!previewUrl">
+            <img ng-src="{{previewUrl}}?imageView2/2/w/300" alt="" class="img-responsive">
+          </div>
+        </div>
+        <input type="hidden" name="url" ng-model="url" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="saveProductAdvantageForm.$invalid&&saveProductAdvantageForm" ng-bind="btn"></button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,32 @@
+<div class="container-fluid" ng-controller="NewsCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">新闻列表</h5>
+    </div>
+    <div class="pull-right">
+      <a ui-sref="saveNews" class="btn btn-primary">发布新闻</a>
+    </div>
+  </div>
+  <!-- content -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>标题</th>
+        <th>作者</th>
+        <th>添加日期</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="news in newsList">
+        <td>{{$index + 1}}</td>
+        <td>{{news.title}}</td>
+        <td>{{news.author}}</td>
+        <td>{{news.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+        <td><a ui-sref="saveNews({_id:news._id})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该新闻？" confirmed-click="delNews(news._id,$index)">删除</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

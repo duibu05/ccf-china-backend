@@ -1,0 +1,117 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>关于我们</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="brief">公司简介</a></li>
+        <li role="presentation"><a ui-sref="values">公司资质</a></li>
+        <li role="presentation" class="active"><a ui-sref="important-date">公司价值观</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="SaveImportantDateCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">新增公司价值观</h5>
+        </div>
+      </div>
+      <!-- content -->
+      <div class="alert alert-success" role="alert"><b>注意：</b>支持批量添加，请参考<a href="javascript:" data-toggle="modal" data-target="#TemplateModal">批量添加模板</a>组织数据！</div>
+      <form class="form-horizontal" id="importantDateForm" name="importantDateForm" novalidate role="form" ng-submit="identifyEventData()">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>事件数据</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':importantDateForm.eventData.$valid,'has-error has-feedback':importantDateForm.eventData.$invalid&&importantDateForm.eventData.$dirty}">
+            <textarea rows="20" class="form-control" placeholder="请输入事件数据" name="eventData" ng-model="eventData" required></textarea>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':importantDateForm.eventData.$invalid&&importantDateForm.eventData.$dirty,'glyphicon-ok':importantDateForm.eventData.$valid}"></span>
+            <span class="help-block bd-red" ng-show="importantDateForm.eventData.$error.required&&importantDateForm.eventData.$dirty">事件数据为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="submit" class="btn btn-primary" ng-disabled="importantDateForm.$invalid" data-toggle="modal" data-target="#IdentifyEventModal">识别数据</button>
+          </div>
+        </div>
+      </form>
+      <!-- Identify Event Modal -->
+      <div class="modal fade" id="IdentifyEventModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="IdentifyEventModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="IdentifyEventModalLabel">识别结果</h4>
+            </div>
+            <div style="padding-left:10px;padding-right:10px">
+              <div class="margin-top-2 alert alert-success">
+                <b>提醒：</b><span>请检查是否和您要录入的信息一致！若出现红色则为数据校验失败，请关闭后检查事件数据！</span>
+              </div>
+            </div>
+            <div class="modal-body">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>时间</th>
+                    <th>事件</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="event in events" ng-class="{danger:event.invalid}">
+                    <td>{{$index + 1}}</td>
+                    <td>{{event.date|date:'yyyy-MM-dd'}}</td>
+                    <td>{{event.event}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-primary" ng-disabled="!eventValid" ng-click="confirmAndSubmit()">确认并提交</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Template Modal -->
+<div class="modal fade" id="TemplateModal" tabindex="-1" role="dialog" aria-labelledby="TemplateModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="TemplateModalLabel">批量添加数据模板</h4>
+      </div>
+      <div style="padding-left:10px;padding-right:10px">
+        <div class="margin-top-2 alert alert-success">
+          <b>提醒：</b><span>请按照格式组织数据！</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div>
+          <span>公司价值观名称1</span>
+          <br/>
+          <span>公司价值观内容1</span>
+          <br/>
+          <span>公司价值观名称2</span>
+          <br/>
+          <span>公司价值观内容2</span>
+          <br/>
+          <span>公司价值观名称3</span>
+          <br/>
+          <span>公司价值观内容3</span>
+          <br/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container-fluid" ng-controller="ApplicationAreaCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">应用领域</h5>
+    </div>
+    <div class="pull-right">
+      <a ui-sref="saveApplicationArea" class="btn btn-primary">添加应用领域</a>
+    </div>
+  </div>
+  <!-- content -->
+  <!-- tips -->
+  <div class="alert alert-success" role="alert"><b>提醒：</b><span>拖动可进行排序！</span></div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th width="10%">序号</th>
+        <th width="19%">应用领域</th>
+        <th width="30%">产品分类</th>
+        <th width="19%">添加日期</th>
+        <th width="19%">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="applicationArea in applicationAreas" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+        <td colspan="5" ng-drag="true" ng-drag-data="applicationArea" ng-class="applicationArea.name">
+          <table width="100%">
+            <tr>
+              <td width="10%" style="border:none;">{{$index + 1}}</td>
+              <td width="19%" style="border:none;"><a ui-sref="applicationAreaAdvantages({applicationAreaId:applicationArea._id,applicationAreaName:applicationArea.name})">{{applicationArea.name}}</a></td>
+              <td width="30%" style="border:none;"><a ui-sref="productCategory({applicationAreaId:applicationArea._id})">{{getApplicationAreasCategories(applicationArea)}}</a></td>
+              <td width="19%" style="border:none;">{{applicationArea.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+              <td width="19%" style="border:none;"><a ui-sref="updateApplicationArea({_id:applicationArea._id})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该应用领域，将同时删除该领域所以产品分类以及相关产品？" confirmed-click="delApplicationArea(applicationArea._id,$index)">删除</a></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

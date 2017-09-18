@@ -1,0 +1,44 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="SaveApplicationCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">{{action}}应用</h5>
+    </div>
+  </div>
+  <!-- tips -->
+  <!-- <div class="alert alert-success" role="alert"><b>提醒：</b><span>如需要重置管理员密码，请使用<a ui-sref="resetPassword({username:username})">重置密码</a>功能</span></div> -->
+  <!-- content -->
+  <form class="form-horizontal" id="saveApplicationForm" name="saveApplicationForm" novalidate role="form" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>名称</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveApplicationForm.title.$valid,'has-error has-feedback':saveApplicationForm.title.$invalid&&saveApplicationForm.title.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入应用名称" name="title" ng-model="title" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveApplicationForm.title.$invalid&&saveApplicationForm.title.$dirty,'glyphicon-ok':saveApplicationForm.title.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveApplicationForm.title.$error.required&&saveApplicationForm.title.$dirty">名称为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>应用</span>
+      </label>
+      <div class="col-sm-3">
+        <div ngf-drop ngf-select ng-model="file" class="drop-box" ngf-drag-over-class="'dragover'" editor="editor" ngf-multiple="false" ngf-allow-dir="true">
+          <span>拖动文件到这里或者点击上传</span>
+        </div>
+        <a ng-if="!!fileName&&!!fileUrl" ng-href="{{previewUrl}}" alt="" ng-bind="fileName"></a>
+        <input type="hidden" name="fileName" ng-model="fileName" required>
+        <input type="hidden" name="fileUrl" ng-model="fileUrl" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="saveApplicationForm.$invalid&&saveApplicationForm" ng-bind="btn"></button>
+      </div>
+    </div>
+  </form>
+</div>

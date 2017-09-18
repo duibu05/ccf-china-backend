@@ -1,0 +1,50 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>常见问题</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="faqCategory">问题分类</a></li>
+        <li role="presentation" class="active"><a ui-sref="faqs">问题列表</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="FaqCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">问题列表</h5>
+        </div>
+        <div class="pull-right">
+          <a ui-sref="saveFaq" class="btn btn-primary">新增问题</a>
+        </div>
+      </div>
+      <!-- content -->
+      <!-- <div class="alert alert-success" role="alert"><b>注意：</b>为了保证轮播中文字显示清晰，图片请选用浅色调！</div> -->
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>分类</th>
+            <th>问题</th>
+            <th>答案</th>
+            <th>添加日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="faq in faqs">
+            <td>{{$index + 1}}</td>
+            <td>{{faq.category.title}}</td>
+            <td><a href="" title="{{faq.question}}">{{faq.question | limitTo:30}}</a></td>
+            <td><a href="" title="{{faq.answer}}">{{faq.answer | limitTo:100}}</a></td>
+            <td>{{faq.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+            <td><a ui-sref="updateFaq({_id:faq._id})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该问题？" confirmed-click="delFaq(faq._id,$index)">删除</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

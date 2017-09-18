@@ -1,0 +1,38 @@
+<div class="container-fluid" ng-controller="ProductAdvantageCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">{{product.name}}的卖点</h5>
+    </div>
+    <div class="pull-right">
+      <a ui-sref="saveProductAdvantage({_id:product._id})" class="btn btn-primary">添加卖点</a>
+    </div>
+  </div>
+  <!-- content -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>卖点</th>
+        <th>卖点描述</th>
+        <th>图片</th>
+        <th>布局</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="advantage in product.advantages">
+        <td>{{$index + 1}}</td>
+        <td>{{advantage.title}}</td>
+        <td>{{advantage.brief | limitTo:100}}</td>
+        <td class="td-preview-img">
+          <a href="" data-toggle="modal" data-target="#previewImg" data-url="{{advantage.url}}">
+            <img ng-src="{{advantage.url}}?imageView2/2/h/30" class="img-responsive" />
+          </a>
+        </td>
+        <td>{{layoutModels[advantage.layout].name}}</td>
+        <td><a ui-sref="updateProductAdvantage({_id:product._id,index:$index})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该产品卖点？" confirmed-click="del(product._id,$index)">删除</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

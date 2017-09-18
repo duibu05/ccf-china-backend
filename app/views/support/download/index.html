@@ -1,0 +1,32 @@
+<div class="container-fluid" ng-controller="ApplicationCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">应用列表</h5>
+    </div>
+    <div class="pull-right">
+      <a ui-sref="saveApplication" class="btn btn-primary">添加应用</a>
+    </div>
+  </div>
+  <!-- content -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>名称</th>
+        <th>文件</th>
+        <th>添加日期</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="application in applications">
+        <td>{{$index + 1}}</td>
+        <td>{{application.title}}</td>
+        <td><a href="{{qiniuDownloadDomain+application.file.url}}">{{application.file.name}}</a></td>
+        <td>{{application.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+        <td><a ui-sref="saveApplication({_id:application._id})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该白皮书？" confirmed-click="delApplication(application._id,$index)">删除</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

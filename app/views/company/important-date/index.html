@@ -1,0 +1,49 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>关于我们</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="brief">公司简介</a></li>
+        <li role="presentation"><a ui-sref="values">公司资质</a></li>
+        <li role="presentation" class="active"><a ui-sref="important-date">公司价值观</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="ImportantDateCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">公司价值观</h5>
+        </div>
+        <div class="pull-right">
+          <a ui-sref="addImportantDate" class="btn btn-primary">新增公司价值观</a>
+        </div>
+      </div>
+      <!-- content -->
+      <!-- <div class="alert alert-success" role="alert"><b>注意：</b>为了保证轮播中文字显示清晰，图片请选用浅色调！</div> -->
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>时间</th>
+            <th>事件</th>
+            <th>添加日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="importantDate in company.importantDates">
+            <td>{{$index + 1}}</td>
+            <td>{{importantDate.date|date:'yyyy-MM-dd'}}</td>
+            <td>{{importantDate.event}}</td>
+            <td>{{importantDate.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+            <td><a href="javascript:" bd-confirm-click="确定删除该公司价值观？" confirmed-click="delImportantDate($index)">删除</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

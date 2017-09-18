@@ -1,0 +1,54 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>关于我们</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="brief">公司简介</a></li>
+        <li role="presentation" class="active"><a ui-sref="values">公司资质</a></li>
+        <li role="presentation"><a ui-sref="important-date">公司价值观</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="ValuesCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">公司资质</h5>
+        </div>
+        <div class="pull-right">
+          <a ui-sref="saveValues" class="btn btn-primary">新增公司资质</a>
+        </div>
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>公司资质</th>
+            <th>描述</th>
+            <th>图片</th>
+            <th>添加日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="value in company.values">
+            <td>{{$index + 1}}</td>
+            <td>{{value.title}}</td>
+            <td>{{value.brief}}</td>
+            <td class="td-preview-img">
+              <a href="" data-toggle="modal" data-target="#previewImg" data-url="{{value.url}}">
+                <img ng-src="{{value.url}}?imageView2/2/h/30" class="img-responsive" />
+              </a>
+            </td>
+            <td>{{value.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+            <td><a ui-sref="saveValues({index:$index})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该公司资质？" confirmed-click="delValues($index)">删除</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

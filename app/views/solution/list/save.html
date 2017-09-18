@@ -1,0 +1,39 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="SaveSolutionCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">{{action}}解决方案基本信息</h5>
+    </div>
+  </div>
+  <!-- tips -->
+  <div class="alert alert-success" role="alert" ng-if="action==='添加'"><b>提醒：</b><span>添加解决方案包括添加解决方案基本信息、添加解决方案卖点和添加解决方案技术规格三部分，请保存基本信息后继续完成解决方案卖点和解决方案技术规格的编辑工作</span></div>
+  <!-- content -->
+  <form class="form-horizontal" id="saveSolutionForm" name="saveSolutionForm" novalidate role="form" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>名称</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveSolutionForm.name.$valid,'has-error has-feedback':saveSolutionForm.name.$invalid&&saveSolutionForm.name.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入解决方案名称" name="name" ng-model="name" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveSolutionForm.name.$invalid&&saveSolutionForm.name.$dirty,'glyphicon-ok':saveSolutionForm.name.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveSolutionForm.name.$error.required&&saveSolutionForm.name.$dirty">名称为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>解决方案分类</span>
+      </label>
+      <div class="col-sm-3">
+        <select class="form-control bd-category-select pull-left" name="applicationAreaId" ng-model="applicationAreaId" required ng-options="applicationArea._id as applicationArea.name for applicationArea in applicationAreas"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="saveSolutionForm.$invalid&&saveSolutionForm">提交</button>
+      </div>
+    </div>
+  </form>
+</div>

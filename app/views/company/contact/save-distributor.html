@@ -1,0 +1,76 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>联系我们</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="contact">公司本部</a></li>
+        <li role="presentation" class="active"><a ui-sref="distributor">公司分部</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="SaveDistributorCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">新增分部</h5></div>
+      </div>
+      <!-- content -->
+      <!-- <div class="alert alert-success" role="alert"><b>注意：</b>为了保证轮播中文字显示清晰，图片请选用浅色调！</div> -->
+      <form class="form-horizontal" id="contactForm" name="contactForm" novalidate role="form" ng-submit="saveDistributor()">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>分部名称</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':contactForm.name.$valid,'has-error has-feedback':contactForm.name.$invalid&&contactForm.name.$dirty}">
+            <input type="text" class="form-control" placeholder="请输入地址" name="name" ng-model="name" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':contactForm.name.$invalid&&contactForm.name.$dirty,'glyphicon-ok':contactForm.name.$valid}"></span>
+            <span class="help-block bd-red" ng-show="contactForm.name.$error.required&&contactForm.name.$dirty">分部名称为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>地址</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':contactForm.address.$valid,'has-error has-feedback':contactForm.address.$invalid&&contactForm.address.$dirty}">
+            <input type="text" class="form-control" placeholder="请输入地址" name="address" ng-model="address" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':contactForm.address.$invalid&&contactForm.address.$dirty,'glyphicon-ok':contactForm.address.$valid}"></span>
+            <span class="help-block bd-red" ng-show="contactForm.address.$error.required&&contactForm.address.$dirty">地址为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>电话</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':contactForm.phone.$valid, 'has-error has-feedback':contactForm.phone.$invalid&&contactForm.phone.$dirty}">
+            <input type="text" class="form-control" placeholder="请输入电话" name="phone" ng-model="phone" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':contactForm.phone.$invalid&&contactForm.phone.$dirty,'glyphicon-ok':contactForm.phone.$valid}"></span>
+            <span class="help-block bd-red" ng-show="contactForm.phone.$error.required&&contactForm.phone.$dirty">电话为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>邮箱</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':contactForm.email.$valid,'has-error has-feedback':contactForm.email.$invalid&&contactForm.email.$dirty}">
+            <input type="email" class="form-control" placeholder="请输入邮箱" name="email" ng-pattern="emailFormat" ng-model="email" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':contactForm.email.$invalid&&contactForm.email.$dirty,'glyphicon-ok':contactForm.email.$valid}"></span>
+            <span class="help-block bd-red" ng-show="contactForm.email.$error.required&&contactForm.email.$dirty">邮箱为必填项！</span>
+            <span class="help-block bd-red" ng-show="contactForm.email.$error.pattern&&contactForm.email.$dirty">必须为邮箱格式！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="submit" class="btn btn-primary" ng-disabled="contactForm.$invalid">保存</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

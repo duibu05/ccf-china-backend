@@ -1,0 +1,40 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="SaveProductCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">{{action}}产品基本信息</h5>
+    </div>
+  </div>
+  <!-- tips -->
+  <div class="alert alert-success" role="alert" ng-if="action==='添加'"><b>提醒：</b><span>添加产品包括添加产品基本信息、添加产品卖点和添加产品技术规格三部分，请保存基本信息后继续完成产品卖点和产品技术规格的编辑工作</span></div>
+  <!-- content -->
+  <form class="form-horizontal" id="saveProductForm" name="saveProductForm" novalidate role="form" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>名称</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveProductForm.name.$valid,'has-error has-feedback':saveProductForm.name.$invalid&&saveProductForm.name.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入产品名称" name="name" ng-model="name" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveProductForm.name.$invalid&&saveProductForm.name.$dirty,'glyphicon-ok':saveProductForm.name.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveProductForm.name.$error.required&&saveProductForm.name.$dirty">名称为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>产品分类</span>
+      </label>
+      <div class="col-sm-3">
+        <select class="form-control bd-category-select pull-left" name="applicationAreaId" ng-model="applicationAreaId" required ng-options="applicationArea._id as applicationArea.name for applicationArea in applicationAreas"></select>
+        <select class="form-control bd-category-select pull-left" name="productCategoryId" ng-model="productCategoryId" ng-options="productCategory._id as productCategory.name for productCategory in productCategories" required></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="saveProductForm.$invalid&&saveProductForm">提交</button>
+      </div>
+    </div>
+  </form>
+</div>

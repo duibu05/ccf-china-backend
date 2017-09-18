@@ -1,0 +1,86 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="AddAdministratorCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">添加管理员账号</h5>
+    </div>
+  </div>
+  <!-- tips -->
+  <div class="alert alert-success" role="alert"><b>提醒：</b><span>请提示新增管理员在第一次登录时修改密码！</span></div>
+  <!-- content -->
+  <form class="form-horizontal" id="addAdministratorForm" name="addAdministratorForm" novalidate role="form" ng-submit="addAdmin()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>角色</span>
+      </label>
+      <div class="col-sm-9">
+        <select class="form-control bd-category-select pull-left" ng-model='role' required ng-options='role.value as role.name for role in roles'></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>姓名</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':addAdministratorForm.name.$valid,'has-error has-feedback':addAdministratorForm.name.$invalid&&addAdministratorForm.name.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入管理员姓名" name="name" ng-model="name" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':addAdministratorForm.name.$invalid&&addAdministratorForm.name.$dirty,'glyphicon-ok':addAdministratorForm.name.$valid}"></span>
+        <span class="help-block bd-red" ng-show="addAdministratorForm.name.$error.required&&addAdministratorForm.name.$dirty">姓名为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>账号</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':addAdministratorForm.username.$valid&&!occupied,'has-error has-feedback':(addAdministratorForm.username.$invalid||occupied||bdValid.name==='username')&&addAdministratorForm.username.$dirty}">
+        <input type="email" class="form-control" placeholder="请输入登录账号" name="username" ng-pattern="emailFormat" ng-model="username" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':(addAdministratorForm.username.$invalid||occupied||bdValid.name==='username')&&addAdministratorForm.username.$dirty,'glyphicon-ok':addAdministratorForm.username.$valid&&!occupied}"></span>
+        <span class="help-block bd-red" ng-show="addAdministratorForm.username.$error.required&&addAdministratorForm.username.$dirty">账号为必填项！</span>
+        <span class="help-block bd-red" ng-show="addAdministratorForm.username.$error.pattern&&addAdministratorForm.username.$dirty">账号必须为邮箱格式！</span>
+        <span class="help-block bd-red" ng-show="occupied">账号被占用！</span>
+        <span class="help-block bd-red" ng-show="bdValid.name==='username'" ng-bind="bdValid.msg"></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>密码</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':addAdministratorForm.password.$valid,'has-error has-feedback':addAdministratorForm.password.$invalid&&addAdministratorForm.password.$dirty}">
+        <input type="password" ng-minlength="6" keydown-enter="addAdmin()" class="form-control" placeholder="请输入密码" name="password" ng-model="password" id="password" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':addAdministratorForm.password.$invalid&&addAdministratorForm.password.$dirty,'glyphicon-ok':addAdministratorForm.password.$valid}"></span>
+        <span class="help-block bd-red" ng-show="addAdministratorForm.password.$error.required&&addAdministratorForm.password.$dirty">密码不能为空！</span>
+        <span class="help-block bd-red" ng-show="addAdministratorForm.password.$error.minlength&&addAdministratorForm.password.$dirty">密码长度不能小于6位！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>确认密码</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':addAdministratorForm.passwordConfirm.$valid,'has-error has-feedback':addAdministratorForm.passwordConfirm.$invalid&&addAdministratorForm.passwordConfirm.$dirty}">
+        <input type="password" ng-minlength="6" keydown-enter="addAdmin()" class="form-control" placeholder="请确认密码" name="passwordConfirm" ng-model="passwordConfirm" id="passwordConfirm" bd-pw-check="password" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':addAdministratorForm.passwordConfirm.$invalid&&addAdministratorForm.passwordConfirm.$dirty,'glyphicon-ok':addAdministratorForm.passwordConfirm.$valid}"></span>
+        <span class="help-block bd-red" ng-show="addAdministratorForm.passwordConfirm.$error.required&&addAdministratorForm.passwordConfirm.$dirty">确认密码不能为空！</span>
+        <span class="help-block bd-red" ng-show="addAdministratorForm.passwordConfirm.$dirty&&addAdministratorForm.passwordConfirm.$error.pwmatch&&!addAdministratorForm.passwordConfirm.$error.minlength&&!addAdministratorForm.passwordConfirm.$error.required">两次密码输入不一致！</span>
+        <span class="help-block bd-red" ng-show="addAdministratorForm.passwordConfirm.$error.minlength&&addAdministratorForm.passwordConfirm.$dirty">确认密码长度不能小于6位！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span>联系电话</span>
+      </label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" placeholder="请输入联系电话" name="phone" ng-model="phone">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="addAdministratorForm.$invalid">提交</button>
+      </div>
+    </div>
+  </form>
+</div>

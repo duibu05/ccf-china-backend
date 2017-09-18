@@ -1,0 +1,76 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="UpdateApplicationAreaAdvantageCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">修改应用领域优势</h5>
+    </div>
+  </div>
+  <!-- content -->
+  <form class="form-horizontal" id="updateApplicationAreaAdvantageForm" name="updateApplicationAreaAdvantageForm" novalidate role="form" ng-submit="update()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>应用领域优势标题</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':updateApplicationAreaAdvantageForm.title.$valid,'has-error has-feedback':updateApplicationAreaAdvantageForm.title.$invalid&&updateApplicationAreaAdvantageForm.title.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入应用领域优势标题" name="title" ng-model="title" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':updateApplicationAreaAdvantageForm.title.$invalid&&updateApplicationAreaAdvantageForm.title.$dirty,'glyphicon-ok':updateApplicationAreaAdvantageForm.title.$valid}"></span>
+        <span class="help-block bd-red" ng-show="updateApplicationAreaAdvantageForm.title.$error.required&&updateApplicationAreaAdvantageForm.title.$dirty">应用领域优势标题为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>应用领域优势描述</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':updateApplicationAreaAdvantageForm.brief.$valid,'has-error has-feedback':updateApplicationAreaAdvantageForm.brief.$invalid&&updateApplicationAreaAdvantageForm.brief.$dirty}">
+        <textarea class="form-control" placeholder="请输入应用领域优势描述" name="brief" ng-model="brief" required></textarea>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':updateApplicationAreaAdvantageForm.brief.$invalid&&updateApplicationAreaAdvantageForm.brief.$dirty,'glyphicon-ok':updateApplicationAreaAdvantageForm.brief.$valid}"></span>
+        <span class="help-block bd-red" ng-show="updateApplicationAreaAdvantageForm.brief.$error.required&&updateApplicationAreaAdvantageForm.brief.$dirty">应用领域优势描述为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>布局</span>
+      </label>
+      <div class="col-sm-3">
+        <select class="form-control bd-category-select pull-left" name="layout" ng-model="layout" ng-options="layoutModel._id as layoutModel.name for layoutModel in layoutModels" required></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>图片</span>
+      </label>
+      <div class="col-sm-3">
+        <div ngf-drop ngf-select ng-model="file" class="drop-box" ngf-drag-over-class="'dragover'" editor="editor" ngf-multiple="false" ngf-allow-dir="true" ngf-pattern="'image/*'">
+          <span ng-if="!url">拖动文件到这里或者点击上传</span>
+          <div ng-if="!!previewUrl">
+            <img ng-src="{{previewUrl}}?imageView2/2/w/300" alt="" class="img-responsive">
+          </div>
+        </div>
+        <input type="hidden" name="url" ng-model="url" required />
+      </div>
+    </div>
+    <div class="form-group" ng-if="products">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>相关产品</span>
+      </label>
+      <div class="col-sm-10">
+        <ul class="labelauty-ul">
+          <li ng-repeat="product in products">
+            <labelauty label="{{product.name}}" ng-true-value="{{product._id}}" ng-false-value="{{undefined}}" ng-model="selectedProductIds[$index]"></labelauty>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="updateApplicationAreaAdvantageForm.$invalid&&updateApplicationAreaAdvantageForm" ng-bind="btn"></button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,64 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="SaveBannerCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">修改轮播图</h5>
+    </div>
+  </div>
+  <!-- content -->
+  <form class="form-horizontal" id="saveBannerForm" name="saveBannerForm" novalidate role="form" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>轮播图标题</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveBannerForm.title.$valid,'has-error has-feedback':saveBannerForm.title.$invalid&&saveBannerForm.title.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入轮播图标题" name="title" ng-model="title" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveBannerForm.title.$invalid&&saveBannerForm.title.$dirty,'glyphicon-ok':saveBannerForm.title.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveBannerForm.title.$error.required&&saveBannerForm.title.$dirty">轮播图标题为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>轮播图描述</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveBannerForm.brief.$valid,'has-error has-feedback':saveBannerForm.brief.$invalid&&saveBannerForm.brief.$dirty}">
+        <textarea class="form-control" placeholder="请输入轮播图描述" name="brief" ng-model="brief" required></textarea>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveBannerForm.brief.$invalid&&saveBannerForm.brief.$dirty,'glyphicon-ok':saveBannerForm.brief.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveBannerForm.brief.$error.required&&saveBannerForm.brief.$dirty">轮播图描述为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>图片</span>
+      </label>
+      <div class="col-sm-3">
+        <div ngf-drop ngf-select ng-model="file" class="drop-box" ngf-drag-over-class="'dragover'" editor="editor" ngf-multiple="false" ngf-allow-dir="true" ngf-pattern="'image/*'">
+          <span ng-if="!url">拖动文件到这里或者点击上传</span>
+          <div ng-if="!!previewUrl">
+            <img ng-src="{{previewUrl}}?imageView2/2/w/300" alt="" class="img-responsive">
+          </div>
+        </div>
+        <input type="hidden" name="url" ng-model="url" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>相关产品分类</span>
+      </label>
+      <div class="col-sm-10">
+        <select class="form-control bd-category-select pull-left" ng-model="applicationArea" ng-options="applicationArea._id as applicationArea.name for applicationArea in applicationAreas"></select>
+        <select class="form-control bd-category-select pull-left" ng-model="category" ng-options="category._id as category.name for category in categories"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="saveBannerForm.$invalid&&saveBannerForm" ng-bind="btn"></button>
+      </div>
+    </div>
+  </form>
+</div>

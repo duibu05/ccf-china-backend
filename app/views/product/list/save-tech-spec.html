@@ -1,0 +1,41 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="SaveTechSpecCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">{{action}}产品技术规格</h5>
+    </div>
+  </div>
+  <!-- tips -->
+  <!-- <div class="alert alert-success" role="alert" ng-if="action==='添加'"><b>提醒：</b><span>添加产品包括添加产品基本信息和添加产品卖点两部分，请保存基本信息后继续完成产品卖点编辑</span></div> -->
+  <!-- content -->
+  <form class="form-horizontal" id="saveTechSpecForm" name="saveTechSpecForm" novalidate role="form" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>名称</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveTechSpecForm.name.$valid,'has-error has-feedback':saveTechSpecForm.name.$invalid&&saveTechSpecForm.name.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入名称" name="name" ng-model="name" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveTechSpecForm.name.$invalid&&saveTechSpecForm.name.$dirty,'glyphicon-ok':saveTechSpecForm.name.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveTechSpecForm.name.$error.required&&saveTechSpecForm.name.$dirty">名称为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>规格</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveTechSpecForm.value.$valid,'has-error has-feedback':saveTechSpecForm.value.$invalid&&saveTechSpecForm.value.$dirty}">
+        <textarea class="form-control" placeholder="请输入规格" name="value" ng-model="value" required></textarea>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveTechSpecForm.value.$invalid&&saveTechSpecForm.value.$dirty,'glyphicon-ok':saveTechSpecForm.value.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveTechSpecForm.value.$error.required&&saveTechSpecForm.value.$dirty">规格为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="saveTechSpecForm.$invalid&&saveTechSpecForm">保存</button>
+      </div>
+    </div>
+  </form>
+</div>

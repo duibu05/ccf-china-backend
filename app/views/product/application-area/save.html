@@ -1,0 +1,41 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="SaveApplicationAreaCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">{{action}}应用领域</h5>
+    </div>
+  </div>
+  <!-- tips -->
+  <!-- <div class="alert alert-success" role="alert"><b>提醒：</b><span>如需要重置管理员密码，请使用<a ui-sref="resetPassword({username:username})">重置密码</a>功能</span></div> -->
+  <!-- content -->
+  <form class="form-horizontal" id="saveApplicationAreaForm" name="saveApplicationAreaForm" novalidate role="form" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>名称</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveApplicationAreaForm.name.$valid,'has-error has-feedback':saveApplicationAreaForm.name.$invalid&&saveApplicationAreaForm.name.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入应用领域名称" name="name" ng-model="name" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveApplicationAreaForm.name.$invalid&&saveApplicationAreaForm.name.$dirty,'glyphicon-ok':saveApplicationAreaForm.name.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveApplicationAreaForm.name.$error.required&&saveApplicationAreaForm.name.$dirty">名称为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>二级产品分类</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveApplicationAreaForm.categories.$valid,'has-error has-feedback':saveApplicationAreaForm.categories.$invalid&&saveApplicationAreaForm.categories.$dirty}">
+        <textarea rows="10" class="form-control" placeholder="请输入二级产品分类，多个分类请用英文逗号分割，示例：产品分类1,产品分类2,产品分类3" name="categories" ng-model="categories" required></textarea>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveApplicationAreaForm.categories.$invalid&&saveApplicationAreaForm.categories.$dirty,'glyphicon-ok':saveApplicationAreaForm.categories.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveApplicationAreaForm.categories.$error.required&&saveApplicationAreaForm.categories.$dirty">二级产品分类为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="saveApplicationAreaForm.$invalid&&saveApplicationAreaForm">提交</button>
+      </div>
+    </div>
+  </form>
+</div>

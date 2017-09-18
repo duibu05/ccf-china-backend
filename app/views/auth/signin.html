@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <!-- <a class="navbar-brand" href="#"><img style="width:100%; height:100%;" src="/images/yeoman.png" alt=""></a> -->
+      <a class="navbar-brand bd-padding-ten" href="#"><img class="img-responsive bd-all-height" src="/images/bigdeer.png" alt=""></a>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<div class="bd-sign-in-flex-box" ng-controller="SigninCtrl">
+  <div></div>
+  <form id="bdSignInForm" name="signInForm" novalidate class="form-horizontal" role="form" ng-submit="signin({username:username,password:password})">
+    <div class="form-group" ng-class="{'has-success has-feedback':signInForm.username.$valid,'has-error has-feedback':signInForm.username.$invalid&&signInForm.username.$touched}">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" name="username" ng-model="username" placeholder="请输入账号" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':signInForm.username.$invalid&&signInForm.username.$touched,'glyphicon-ok':signInForm.username.$valid}"></span>
+        <span class="help-block bd-red" ng-show="signInForm.username.$error.required&&signInForm.username.$touched">账号为必填项！</span>
+        <span class="help-block bd-red" ng-show="signInForm.username.$error.email&&signInForm.username.$touched">账号必须为邮箱格式！</span>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{'has-success has-feedback':signInForm.password.$valid,'has-error has-feedback':signInForm.password.$invalid&&signInForm.password.$touched}">
+      <div class="col-sm-12">
+        <input type="password" class="form-control" ng-minlength="6" name="password" ng-model="password" placeholder="请输入密码" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':signInForm.password.$invalid&&signInForm.password.$touched,'glyphicon-ok':signInForm.password.$valid}"></span>
+        <span class="help-block bd-red" ng-show="signInForm.password.$error.required&&signInForm.password.$touched">密码为必填项！</span>
+        <span class="help-block bd-red" ng-show="signInForm.password.$error.minlength&&signInForm.password.$touched">密码长度不能小于6位！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <button type="submit" class="btn btn-primary btn-block input-lg" ng-disabled="signInForm.$invalid">立即登录</button>
+      </div>
+    </div>
+  </form>
+  <!-- footer begin -->
+  <div class="bd-padding-bottom-25">
+    <p class="text-center help-block">© 2017 Santel.</p>
+  </div>
+</div>

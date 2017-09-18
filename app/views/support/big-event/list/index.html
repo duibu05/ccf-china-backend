@@ -1,0 +1,48 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>重大事件</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="bigEventCategory">重大事件分类</a></li>
+        <li role="presentation" class="active"><a ui-sref="bigEvents">重大事件列表</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="BigEventCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">重大事件列表</h5>
+        </div>
+        <div class="pull-right">
+          <a ui-sref="saveBigEvent" class="btn btn-primary">新增重大事件</a>
+        </div>
+      </div>
+      <!-- content -->
+      <!-- <div class="alert alert-success" role="alert"><b>注意：</b>为了保证轮播中文字显示清晰，图片请选用浅色调！</div> -->
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>分类</th>
+            <th>重大事件</th>
+            <th>添加日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="bigEvent in bigEvents">
+            <td>{{$index + 1}}</td>
+            <td>{{bigEvent.category.title}}</td>
+            <td><a href="" title="{{bigEvent.question}}">{{bigEvent.question | limitTo:30}}</a></td>
+            <td>{{bigEvent.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+            <td><a ui-sref="updateBigEvent({_id:bigEvent._id})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该重大事件？" confirmed-click="delBigEvent(bigEvent._id,$index)">删除</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

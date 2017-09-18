@@ -1,0 +1,53 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>友情链接</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="friendLinkCategory">分类</a></li>
+        <li role="presentation" class="active"><a ui-sref="friendLinks">列表</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="UpdateFriendLinkCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">修改链接</h5>
+        </div>
+      </div>
+      <!-- content -->
+      <form class="form-horizontal" id="friendLinkForm" name="friendLinkForm" novalidate role="form" ng-submit="update()">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>链接名称</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':friendLinkForm.name.$valid,'has-error has-feedback':friendLinkForm.name.$invalid&&friendLinkForm.name.$dirty}">
+            <input type="text" class="form-control" placeholder="请输入友情链接名称" name="name" ng-model="name" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':friendLinkForm.name.$invalid&&friendLinkForm.name.$dirty,'glyphicon-ok':friendLinkForm.name.$valid}"></span>
+            <span class="help-block bd-red" ng-show="friendLinkForm.name.$error.required&&friendLinkForm.name.$dirty">友情链接名称为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>链接地址</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':friendLinkForm.url.$valid,'has-error has-feedback':friendLinkForm.url.$invalid&&friendLinkForm.url.$dirty}">
+            <input type="text" class="form-control" placeholder="请输入友情链接地址" name="url" ng-model="url" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':friendLinkForm.url.$invalid&&friendLinkForm.url.$dirty,'glyphicon-ok':friendLinkForm.url.$valid}"></span>
+            <span class="help-block bd-red" ng-show="friendLinkForm.url.$error.required&&friendLinkForm.url.$dirty">友情链接地址为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="submit" class="btn btn-primary" ng-disabled="friendLinkForm.$invalid" data-toggle="modal" data-target="#IdentifyFriendLinkModal">保存</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

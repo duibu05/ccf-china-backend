@@ -1,0 +1,52 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>联系我们</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="contact">公司本部</a></li>
+        <li role="presentation" class="active"><a ui-sref="distributor">公司分部</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="DistributorCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">公司分部</h5>
+        </div>
+        <div class="pull-right">
+          <a ui-sref="saveDistributor" class="btn btn-primary">新增分部</a>
+        </div>
+      </div>
+      <!-- content -->
+      <!-- <div class="alert alert-success" role="alert"><b>注意：</b>为了保证轮播中文字显示清晰，图片请选用浅色调！</div> -->
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>分部名称</th>
+            <th>地址</th>
+            <th>电话</th>
+            <th>邮箱</th>
+            <th>添加日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="distributor in distributors">
+            <td>{{$index + 1}}</td>
+            <td>{{distributor.name}}</td>
+            <td>{{distributor.address}}</td>
+            <td>{{distributor.phone}}</td>
+            <td>{{distributor.email}}</td>
+            <td>{{distributor.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+            <td><a ui-sref="saveDistributor({_id:distributor._id})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该分部？" confirmed-click="delDistributor(distributor._id,$index)">删除</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

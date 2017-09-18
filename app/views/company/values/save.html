@@ -1,0 +1,71 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>关于我们</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="values">公司简介</a></li>
+        <li role="presentation" class="active"><a ui-sref="values">公司资质</a></li>
+        <li role="presentation"><a ui-sref="important-date">公司价值观</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="SaveValuesCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">{{action}}公司资质</h5>
+        </div>
+      </div>
+      <!-- content -->
+      <!-- <div class="alert alert-success" role="alert"><b>注意：</b>为了保证轮播中文字显示清晰，图片请选用浅色调！</div> -->
+      <form class="form-horizontal" id="valuesForm" name="valuesForm" novalidate role="form" ng-submit="save()">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>公司资质</span>
+          </label>
+          <div class="col-sm-3" ng-class="{'has-success has-feedback':valuesForm.title.$valid,'has-error has-feedback':valuesForm.title.$invalid&&valuesForm.title.$dirty}">
+            <input type="text" class="form-control" placeholder="请输入公司资质" name="title" ng-model="title" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':valuesForm.title.$invalid&&valuesForm.title.$dirty,'glyphicon-ok':valuesForm.title.$valid}"></span>
+            <span class="help-block bd-red" ng-show="valuesForm.title.$error.required&&valuesForm.title.$dirty">公司资质为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>描述</span>
+          </label>
+          <div class="col-sm-3" ng-class="{'has-success has-feedback':valuesForm.brief.$valid,'has-error has-feedback':valuesForm.brief.$invalid&&valuesForm.brief.$dirty}">
+            <textarea class="form-control" placeholder="请输入描述" name="brief" ng-model="brief" required></textarea>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':valuesForm.brief.$invalid&&valuesForm.brief.$dirty,'glyphicon-ok':valuesForm.brief.$valid}"></span>
+            <span class="help-block bd-red" ng-show="valuesForm.brief.$error.required&&valuesForm.brief.$dirty">描述为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>图片</span>
+          </label>
+          <div class="col-sm-3">
+            <!-- <input type="file" placeholder="请输入地址" name="file" ng-model="file" ng-change="uploadFile()" required> -->
+            <div ngf-drop ngf-select ng-model="file" class="drop-box" ngf-drag-over-class="'dragover'" editor="editor" ngf-multiple="false" ngf-allow-dir="true" ngf-pattern="'image/*'">
+              <span ng-if="!url">拖动文件到这里或者点击上传</span>
+              <div ng-if="!!previewUrl">
+                <img ng-src="{{previewUrl}}" alt="" class="img-responsive">
+              </div>
+            </div>
+            <input type="hidden" name="url" ng-model="url" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="submit" class="btn btn-primary" ng-disabled="valuesForm.$invalid" ng-bind="btn"></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

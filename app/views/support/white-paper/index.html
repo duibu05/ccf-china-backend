@@ -1,0 +1,32 @@
+<div class="container-fluid" ng-controller="WhitePaperCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">白皮书列表</h5>
+    </div>
+    <div class="pull-right">
+      <a ui-sref="saveWhitePaper" class="btn btn-primary">添加白皮书</a>
+    </div>
+  </div>
+  <!-- content -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>名称</th>
+        <th>文件</th>
+        <th>添加日期</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="whitePaper in whitePapers">
+        <td>{{$index + 1}}</td>
+        <td>{{whitePaper.title}}</td>
+        <td><a href="{{qiniuDownloadDomain+whitePaper.file.url}}">{{whitePaper.file.name}}</a></td>
+        <td>{{whitePaper.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+        <td><a ui-sref="saveWhitePaper({_id:whitePaper._id})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该白皮书？" confirmed-click="delWhitePaper(whitePaper._id,$index)">删除</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

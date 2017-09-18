@@ -1,0 +1,63 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>常见问题</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="faqCategory">问题分类</a></li>
+        <li role="presentation" class="active"><a ui-sref="faqs">问题列表</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="UpdateFaqCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">修改问题</h5>
+        </div>
+      </div>
+      <!-- content -->
+      <!-- <div class="alert alert-success" role="alert"><b>注意：</b>为了保证轮播中文字显示清晰，图片请选用浅色调！</div> -->
+      <form class="form-horizontal" id="faqForm" name="faqForm" novalidate role="form" ng-submit="update()">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>常见问题分类</span>
+          </label>
+          <div class="col-sm-3">
+            <select class="form-control bd-category-select pull-left" ng-model='category' required ng-options='category._id as category.title for category in categories'></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>问题</span>
+          </label>
+          <div class="col-sm-3" ng-class="{'has-success has-feedback':faqForm.question.$valid,'has-error has-feedback':faqForm.question.$invalid&&faqForm.question.$dirty}">
+            <input class="form-control" type="text" placeholder="请输入问题" name="question" ng-model="question" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':faqForm.question.$invalid&&faqForm.question.$dirty,'glyphicon-ok':faqForm.question.$valid}"></span>
+            <span class="help-block bd-red" ng-show="faqForm.question.$error.required&&faqForm.question.$dirty">问题为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>答案</span>
+          </label>
+          <div class="col-sm-3" ng-class="{'has-success has-feedback':faqForm.answer.$valid,'has-error has-feedback':faqForm.answer.$invalid&&faqForm.answer.$dirty}">
+            <input class="form-control" type="text" placeholder="请输入答案" name="answer" ng-model="answer" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':faqForm.answer.$invalid&&faqForm.answer.$dirty,'glyphicon-ok':faqForm.answer.$valid}"></span>
+            <span class="help-block bd-red" ng-show="faqForm.answer.$error.required&&faqForm.answer.$dirty">答案为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="submit" class="btn btn-primary" ng-disabled="faqForm.$invalid">保存</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container-fluid" ng-controller="AdministratorCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">管理员账号</h5>
+    </div>
+    <div class="pull-right">
+      <a ui-sref="addAdministrator" class="btn btn-primary">新增管理员</a>
+    </div>
+  </div>
+  <!-- content -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>账号</th>
+        <th>电话</th>
+        <th>角色</th>
+        <th>添加日期</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="admin in admins">
+        <td>{{$index + 1}}</td>
+        <td>{{admin.name}}</td>
+        <td>{{admin.username}}</td>
+        <td>{{admin.phone}}</td>
+        <td>{{admin.role==0?'超级管理员':'内容编辑'}}</td>
+        <td>{{admin.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+        <td><a ui-sref="modifyAdministrator({username:admin.username})">修改</a> | <a ui-sref="resetPassword({username:admin.username})">重置密码</a> | <a href="javascript:" bd-confirm-click="确定删除该管理员？" confirmed-click="delAdministrator(admin.username,$index)">删除</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,42 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>友情链接</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation" class="active"><a ui-sref="friendLinkCategory">分类</a></li>
+        <li role="presentation"><a ui-sref="friendLinks">列表</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="UpdateFriendLinkCategoryCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">修改分类</h5>
+        </div>
+      </div>
+      <!-- content -->
+      <form class="form-horizontal" id="friendLinkCategoryForm" name="friendLinkCategoryForm" novalidate role="form" ng-submit="update()">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>分类名称</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':friendLinkCategoryForm.title.$valid,'has-error has-feedback':friendLinkCategoryForm.title.$invalid&&friendLinkCategoryForm.title.$dirty}">
+            <input type="text" class="form-control" placeholder="请输入友情链接分类名称" name="title" ng-model="title" required>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':friendLinkCategoryForm.title.$invalid&&friendLinkCategoryForm.title.$dirty,'glyphicon-ok':friendLinkCategoryForm.title.$valid}"></span>
+            <span class="help-block bd-red" ng-show="friendLinkCategoryForm.title.$error.required&&friendLinkCategoryForm.title.$dirty">友情链接分类名称为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="submit" class="btn btn-primary" ng-disabled="friendLinkCategoryForm.$invalid" >保存</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

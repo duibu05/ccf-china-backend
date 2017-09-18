@@ -1,0 +1,319 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="SaveWebsiteSettingCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">修改网站栏目名称</h5>
+    </div>
+  </div>
+  <!-- content -->
+  <form class="form-horizontal" id="websiteSettingForm" name="websiteSettingForm" novalidate role="form" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <p class="help-block"><strong>顶部导航</strong></p>
+      </label>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>网站首页</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.home.$valid,'has-error has-feedback':websiteSettingForm.home.$invalid&&websiteSettingForm.home.$dirty}">
+        <input type="hidden" name="_id" ng-model="_id" />
+        <input type="text" class="form-control" placeholder="请输入栏目名称" ng-model="home" name="home" id="home" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.home.$invalid&&websiteSettingForm.home.$dirty,'glyphicon-ok':websiteSettingForm.home.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.home.$error.required&&websiteSettingForm.home.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <p class="help-block"><strong>顶部导航</strong></p>
+      </label>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>产品中心</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.product.$valid,'has-error has-feedback':websiteSettingForm.product.$invalid&&websiteSettingForm.product.$dirty}">
+        <input type="hidden" name="_id" ng-model="_id" />
+        <input type="text" class="form-control" placeholder="请输入栏目名称" ng-model="product" name="product" id="product" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.product.$invalid&&websiteSettingForm.product.$dirty,'glyphicon-ok':websiteSettingForm.product.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.product.$error.required&&websiteSettingForm.product.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>解决方案</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.solution.$valid,'has-error has-feedback':websiteSettingForm.solution.$invalid&&websiteSettingForm.solution.$dirty}">
+        <input type="text" placeholder="请输入栏目名称" class="form-control" name="solution" ng-model="solution" id="solution" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.solution.$invalid&&websiteSettingForm.solution.$dirty,'glyphicon-ok':websiteSettingForm.solution.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.solution.$error.required&&websiteSettingForm.solution.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <p class="help-block"><strong>底部导航</strong></p>
+      </label>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>应用领域</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.applicationArea.$valid,'has-error has-feedback':websiteSettingForm.applicationArea.$invalid&&websiteSettingForm.applicationArea.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="applicationArea" ng-model="applicationArea" id="applicationArea" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.applicationArea.$invalid&&websiteSettingForm.applicationArea.$dirty,'glyphicon-ok':websiteSettingForm.applicationArea.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.applicationArea.$error.required&&websiteSettingForm.applicationArea.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>支持中心</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.support.$valid,'has-error has-feedback':websiteSettingForm.support.$invalid&&websiteSettingForm.support.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="support" ng-model="support" id="support" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.support.$invalid&&websiteSettingForm.support.$dirty,'glyphicon-ok':websiteSettingForm.support.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.support.$error.required&&websiteSettingForm.support.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>白&nbsp;&nbsp;皮&nbsp;&nbsp;书</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.whitePaper.$valid,'has-error has-feedback':websiteSettingForm.whitePaper.$invalid&&websiteSettingForm.whitePaper.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="whitePaper" ng-model="whitePaper" id="whitePaper" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.whitePaper.$invalid&&websiteSettingForm.whitePaper.$dirty,'glyphicon-ok':websiteSettingForm.whitePaper.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.whitePaper.$error.required&&websiteSettingForm.whitePaper.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>下载中心</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.download.$valid,'has-error has-feedback':websiteSettingForm.download.$invalid&&websiteSettingForm.download.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="download" ng-model="download" id="download" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.download.$invalid&&websiteSettingForm.download.$dirty,'glyphicon-ok':websiteSettingForm.download.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.download.$error.required&&websiteSettingForm.download.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>常见问题</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.faqs.$valid,'has-error has-feedback':websiteSettingForm.faqs.$invalid&&websiteSettingForm.faqs.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="faqs" ng-model="faqs" id="faqs" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.faqs.$invalid&&websiteSettingForm.faqs.$dirty,'glyphicon-ok':websiteSettingForm.faqs.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.faqs.$error.required&&websiteSettingForm.faqs.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>重大事件</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.bigEvent.$valid,'has-error has-feedback':websiteSettingForm.bigEvent.$invalid&&websiteSettingForm.bigEvent.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="bigEvent" ng-model="bigEvent" id="bigEvent" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.bigEvent.$invalid&&websiteSettingForm.bigEvent.$dirty,'glyphicon-ok':websiteSettingForm.bigEvent.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.bigEvent.$error.required&&websiteSettingForm.bigEvent.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>公司信息</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.company.$valid,'has-error has-feedback':websiteSettingForm.company.$invalid&&websiteSettingForm.company.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="company" ng-model="company" id="company" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.company.$invalid&&websiteSettingForm.company.$dirty,'glyphicon-ok':websiteSettingForm.company.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.company.$error.required&&websiteSettingForm.company.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>关于我们</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.santelInfo.$valid,'has-error has-feedback':websiteSettingForm.santelInfo.$invalid&&websiteSettingForm.santelInfo.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="santelInfo" ng-model="santelInfo" id="santelInfo" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.santelInfo.$invalid&&websiteSettingForm.santelInfo.$dirty,'glyphicon-ok':websiteSettingForm.santelInfo.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.santelInfo.$error.required&&websiteSettingForm.santelInfo.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>新闻中心</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.newsCenter.$valid,'has-error has-feedback':websiteSettingForm.newsCenter.$invalid&&websiteSettingForm.newsCenter.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="newsCenter" ng-model="newsCenter" id="newsCenter" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.newsCenter.$invalid&&websiteSettingForm.newsCenter.$dirty,'glyphicon-ok':websiteSettingForm.newsCenter.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.newsCenter.$error.required&&websiteSettingForm.newsCenter.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>联系我们</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.contactUs.$valid,'has-error has-feedback':websiteSettingForm.contactUs.$invalid&&websiteSettingForm.contactUs.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="contactUs" ng-model="contactUs" id="contactUs" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.contactUs.$invalid&&websiteSettingForm.contactUs.$dirty,'glyphicon-ok':websiteSettingForm.contactUs.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.contactUs.$error.required&&websiteSettingForm.contactUs.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>友情链接</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.friendLink.$valid,'has-error has-feedback':websiteSettingForm.friendLink.$invalid&&websiteSettingForm.friendLink.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="friendLink" ng-model="friendLink" id="friendLink" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.friendLink.$invalid&&websiteSettingForm.friendLink.$dirty,'glyphicon-ok':websiteSettingForm.friendLink.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.friendLink.$error.required&&websiteSettingForm.friendLink.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <p class="help-block"><strong>其他设置</strong></p>
+      </label>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>公司资质</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.santelCert.$valid,'has-error has-feedback':websiteSettingForm.santelCert.$invalid&&websiteSettingForm.santelCert.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="santelCert" ng-model="santelCert" id="santelCert" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.santelCert.$invalid&&websiteSettingForm.santelCert.$dirty,'glyphicon-ok':websiteSettingForm.santelCert.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.santelCert.$error.required&&websiteSettingForm.santelCert.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>价&nbsp;&nbsp;值&nbsp;&nbsp;观</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.santelValue.$valid,'has-error has-feedback':websiteSettingForm.santelValue.$invalid&&websiteSettingForm.santelValue.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="santelValue" ng-model="santelValue" id="santelValue" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.santelValue.$invalid&&websiteSettingForm.santelValue.$dirty,'glyphicon-ok':websiteSettingForm.santelValue.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.santelValue.$error.required&&websiteSettingForm.santelValue.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>公司总部</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.headOffice.$valid,'has-error has-feedback':websiteSettingForm.headOffice.$invalid&&websiteSettingForm.headOffice.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="headOffice" ng-model="headOffice" id="headOffice" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.headOffice.$invalid&&websiteSettingForm.headOffice.$dirty,'glyphicon-ok':websiteSettingForm.headOffice.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.headOffice.$error.required&&websiteSettingForm.headOffice.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>公司分部</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.distributor.$valid,'has-error has-feedback':websiteSettingForm.distributor.$invalid&&websiteSettingForm.distributor.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="distributor" ng-model="distributor" id="distributor" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.distributor.$invalid&&websiteSettingForm.distributor.$dirty,'glyphicon-ok':websiteSettingForm.distributor.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.distributor.$error.required&&websiteSettingForm.distributor.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>技术规格</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.techSpecs.$valid,'has-error has-feedback':websiteSettingForm.techSpecs.$invalid&&websiteSettingForm.techSpecs.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="techSpecs" ng-model="techSpecs" id="techSpecs" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.techSpecs.$invalid&&websiteSettingForm.techSpecs.$dirty,'glyphicon-ok':websiteSettingForm.techSpecs.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.techSpecs.$error.required&&websiteSettingForm.techSpecs.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>去哪里买</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.where2Buy.$valid,'has-error has-feedback':websiteSettingForm.where2Buy.$invalid&&websiteSettingForm.where2Buy.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="where2Buy" ng-model="where2Buy" id="where2Buy" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.where2Buy.$invalid&&websiteSettingForm.where2Buy.$dirty,'glyphicon-ok':websiteSettingForm.where2Buy.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.where2Buy.$error.required&&websiteSettingForm.where2Buy.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>支持中心口号</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.supportSlogn.$valid,'has-error has-feedback':websiteSettingForm.supportSlogn.$invalid&&websiteSettingForm.supportSlogn.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="supportSlogn" ng-model="supportSlogn" id="supportSlogn" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.supportSlogn.$invalid&&websiteSettingForm.supportSlogn.$dirty,'glyphicon-ok':websiteSettingForm.supportSlogn.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.supportSlogn.$error.required&&websiteSettingForm.supportSlogn.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>相关产品</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.relatedProduct.$valid,'has-error has-feedback':websiteSettingForm.relatedProduct.$invalid&&websiteSettingForm.relatedProduct.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="relatedProduct" ng-model="relatedProduct" id="relatedProduct" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.relatedProduct.$invalid&&websiteSettingForm.relatedProduct.$dirty,'glyphicon-ok':websiteSettingForm.relatedProduct.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.relatedProduct.$error.required&&websiteSettingForm.relatedProduct.$dirty">不能为空！</span>
+        <p class="help-block">应用领域详情页面中的相关产品</p>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>了解更多</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.learnMore.$valid,'has-error has-feedback':websiteSettingForm.learnMore.$invalid&&websiteSettingForm.learnMore.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="learnMore" ng-model="learnMore" id="learnMore" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.learnMore.$invalid&&websiteSettingForm.learnMore.$dirty,'glyphicon-ok':websiteSettingForm.learnMore.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.learnMore.$error.required&&websiteSettingForm.learnMore.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>网站版权</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.auth.$valid,'has-error has-feedback':websiteSettingForm.auth.$invalid&&websiteSettingForm.auth.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="auth" ng-model="auth" id="auth" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.auth.$invalid&&websiteSettingForm.auth.$dirty,'glyphicon-ok':websiteSettingForm.auth.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.auth.$error.required&&websiteSettingForm.auth.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="form-group pull-left">
+      <label class="col-sm-6 control-label">
+        <span class="text-danger">*</span>
+        <span>语言切换</span>
+      </label>
+      <div class="col-sm-6" ng-class="{'has-success has-feedback':websiteSettingForm.lang.$valid,'has-error has-feedback':websiteSettingForm.lang.$invalid&&websiteSettingForm.lang.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入栏目名称" name="lang" ng-model="lang" id="lang" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':websiteSettingForm.lang.$invalid&&websiteSettingForm.lang.$dirty,'glyphicon-ok':websiteSettingForm.lang.$valid}"></span>
+        <span class="help-block bd-red" ng-show="websiteSettingForm.lang.$error.required&&websiteSettingForm.lang.$dirty">不能为空！</span>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="form-group">
+      <div class="col-sm-6 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="websiteSettingForm.$invalid">提交</button>
+      </div>
+    </div>
+  </form>
+</div>

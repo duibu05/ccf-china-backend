@@ -1,0 +1,38 @@
+<div class="container-fluid" ng-controller="ApplicationAreaAdvantageCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">{{applicationArea.name}}的优势</h5>
+    </div>
+    <div class="pull-right">
+      <a ui-sref="saveApplicationAreaAdvantage({applicationAreaId:applicationArea._id,applicationAreaName:applicationArea.name})" class="btn btn-primary">添加优势</a>
+    </div>
+  </div>
+  <!-- content -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>优势</th>
+        <th>优势描述</th>
+        <th>图片</th>
+        <th>布局</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="advantage in advantages">
+        <td>{{$index + 1}}</td>
+        <td>{{advantage.title}}</td>
+        <td>{{advantage.brief}}</td>
+        <td class="td-preview-img">
+          <a href="" data-toggle="modal" data-target="#previewImg" data-url="{{advantage.url}}">
+            <img ng-src="{{advantage.url}}?imageView2/2/h/30" class="img-responsive" />
+          </a>
+        </td>
+        <td>{{layoutModels[advantage.layout].name}}</td>
+        <td><a ui-sref="updateApplicationAreaAdvantage({_id:advantage._id,applicationAreaId:applicationArea._id,applicationAreaName:applicationArea.name})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该应用领域的优势？" confirmed-click="del(advantage._id,$index)">删除</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

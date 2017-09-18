@@ -1,0 +1,51 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>友情链接</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="friendLinkCategory">分类</a></li>
+        <li role="presentation" class="active"><a ui-sref="friendLinks">列表</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="FriendLinkCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">列表</h5>
+        </div>
+        <div class="pull-right">
+          <a ui-sref="saveFriendLink" class="btn btn-primary">新增友情链接</a>
+        </div>
+      </div>
+      <!-- content -->
+      <!-- <div class="alert alert-success" role="alert"><b>注意：</b>为了保证轮播中文字显示清晰，图片请选用浅色调！</div> -->
+      <div class="container-fluid p0">
+        <select class="form-control bd-category-select pull-left" ng-model="friendLinkCategory" ng-options="friendLinkCategory._id as friendLinkCategory.title for friendLinkCategory in friendLinkCategories"></select>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>分类</th>
+            <th>名称</th>
+            <th>链接</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="friendLink in category.links">
+            <td>{{$index + 1}}</td>
+            <td>{{category.title}}</td>
+            <td>{{friendLink.name}}</td>
+            <td>{{friendLink.url}}</td>
+            <td><a ui-sref="updateFriendLink({_id:category._id,index:$index})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该友情链接？" confirmed-click="del(category._id,$index)">删除</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

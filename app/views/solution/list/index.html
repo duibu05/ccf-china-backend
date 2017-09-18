@@ -1,0 +1,43 @@
+<div class="container-fluid" ng-controller="SolutionCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">解决方案列表</h5>
+    </div>
+    <div class="pull-right">
+      <a ui-sref="saveSolution" class="btn btn-primary">添加解决方案</a>
+    </div>
+  </div>
+  <!-- tips -->
+  <div class="alert alert-success" role="alert"><b>提醒：</b><span>点击解决方案名称可进入该解决方案的卖点管理页面，点击下拉菜单可进行解决方案筛选，拖动可进行排序！</span></div>
+  <!-- content -->
+  <div class="container-fluid p0">
+    <select class="form-control bd-category-select pull-left" ng-model="applicationAreaId" ng-options="applicationArea._id as applicationArea.name for applicationArea in applicationAreas"></select>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th width="10%">序号</th>
+        <th width="19%">解决方案名称</th>
+        <th width="30%">应用领域</th>
+        <th width="19%">添加日期</th>
+        <th width="19%">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="solution in solutions" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+        <td colspan="5" ng-drag="true" ng-drag-data="solution" ng-class="solution.name">
+          <table width="100%">
+            <tr>
+              <td width="10%" style="border:none;">{{$index + 1}}</td>
+              <td width="19%" style="border:none;"><a ui-sref="solutionAdvantages({_id:solution._id})" alt="查看卖点" title="查看卖点">{{solution.name}}</a></td>
+              <td width="30%" style="border:none;">{{solution.applicationArea.name}}</td>
+              <td width="19%" style="border:none;">{{solution.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+              <td width="19%" style="border:none;"><a ui-sref="updateSolution({_id:solution._id})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该解决方案？" confirmed-click="del(solution._id,$index)">删除</a> | <a ui-sref="solutionTechSpecs({_id:solution._id})">技术规格</a></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

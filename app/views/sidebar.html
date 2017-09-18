@@ -1,0 +1,85 @@
+<ul class="nav nav-pills nav-stacked" role="tablist" ng-class="{'bd-collapsed':true}">
+  <li role="presentation"><a href="javascript:void(0);" ng-click="collapse(this)" class="bd-sidebar-collapse"><i class="glyphicon glyphicon-align-justify"></i></a></li>
+</ul>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div>
+    <div role="tab" id="bd-index-heading">
+      <ul class="nav nav-pills nav-stacked" role="tablist">
+        <li role="presentation"><a data-toggle="collapse" data-parent="#accordion" href="#bd-index" aria-expanded="true" aria-controls="bd-index" class="bd-sidebar-category"><i class="glyphicon glyphicon-minus"></i> 首页</a></li>
+      </ul>
+    </div>
+    <div id="bd-index" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="bd-index-heading">
+      <div>
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li role="presentation"><a ui-sref="banner" class="bd-sidebar-item"><i class="glyphicon glyphicon-picture"></i> 轮播图管理</a></li>
+          <li role="presentation"><a ui-sref="recommandedAA" class="bd-sidebar-item"><i class="glyphicon glyphicon-thumbs-up"></i> 应用领域推荐</a></li>
+          <li role="presentation"><a ui-sref="saveWebsiteSetting" class="bd-sidebar-item"><i class="glyphicon glyphicon-thumbs-up"></i> 网站栏目名称管理</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div role="tab" id="bd-management-heading">
+      <ul class="nav nav-pills nav-stacked" role="tablist">
+        <li role="presentation"><a data-toggle="collapse" data-parent="#accordion" href="#bd-product" aria-expanded="false" aria-controls="bd-product" class="bd-sidebar-category"><i class="glyphicon glyphicon-minus"></i> 产品</a></li>
+      </ul>
+    </div>
+    <div id="bd-product" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="bd-management-heading">
+      <div>
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li role="presentation"><a ui-sref="applicationAreas" class="bd-sidebar-item"><i class="glyphicon glyphicon-list"></i> 应用领域及分类</a></li>
+          <li role="presentation"><a ui-sref="products" class="bd-sidebar-item"><i class="glyphicon glyphicon-th-large"></i> 产品管理</a></li>
+          <li role="presentation"><a ui-sref="solutions" class="bd-sidebar-item"><i class="glyphicon glyphicon-th-large"></i> 解决方案管理</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div role="tab" id="bd-management-heading">
+      <ul class="nav nav-pills nav-stacked" role="tablist">
+        <li role="presentation"><a data-toggle="collapse" data-parent="#accordion" href="#bd-support" aria-expanded="false" aria-controls="bd-support" class="bd-sidebar-category"><i class="glyphicon glyphicon-minus"></i> 支持</a></li>
+      </ul>
+    </div>
+    <div id="bd-support" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="bd-management-heading">
+      <div>
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li role="presentation"><a ui-sref="whitePapers" class="bd-sidebar-item"><i class="glyphicon glyphicon-book"></i> 白皮书</a></li>
+          <li role="presentation"><a ui-sref="applications" class="bd-sidebar-item"><i class="glyphicon glyphicon-download-alt"></i> 应用下载</a></li>
+          <li role="presentation"><a ui-sref="faqCategory" class="bd-sidebar-item"><i class="glyphicon glyphicon-comment"></i> 常见问题</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div role="tab" id="bd-management-heading">
+      <ul class="nav nav-pills nav-stacked" role="tablist">
+        <li role="presentation"><a data-toggle="collapse" data-parent="#accordion" href="#bd-company" aria-expanded="false" aria-controls="bd-company" class="bd-sidebar-category"><i class="glyphicon glyphicon-minus"></i> 公司信息</a></li>
+      </ul>
+    </div>
+    <div id="bd-company" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="bd-management-heading">
+      <div>
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li role="presentation"><a ui-sref="brief" class="bd-sidebar-item"><i class="glyphicon glyphicon-blackboard"></i> 关于我们</a></li>
+          <li role="presentation"><a ui-sref="bigEventCategory" class="bd-sidebar-item"><i class="glyphicon glyphicon-comment"></i> 重大事件</a></li>
+          <li role="presentation"><a ui-sref="news" class="bd-sidebar-item"><i class="glyphicon glyphicon-send"></i> 公司新闻</a></li>
+          <li role="presentation"><a ui-sref="contact" class="bd-sidebar-item"><i class="glyphicon glyphicon-earphone"></i> 联系我们</a></li>
+          <li role="presentation"><a ui-sref="friendLinks" class="bd-sidebar-item"><i class="glyphicon glyphicon-star"></i> 友情链接</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div ng-if="isSuperAdmin">
+    <div role="tab" id="bd-management-heading">
+      <ul class="nav nav-pills nav-stacked" role="tablist">
+        <li role="presentation"><a data-toggle="collapse" data-parent="#accordion" href="#bd-authority" aria-expanded="false" aria-controls="bd-authority" class="bd-sidebar-category"><i class="glyphicon glyphicon-minus"></i> 权限管理</a></li>
+      </ul>
+    </div>
+    <div id="bd-authority" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="bd-management-heading">
+      <div>
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li role="presentation"><a ui-sref="administrator" class="bd-sidebar-item"><i class="glyphicon glyphicon-user"></i> 管理员账户</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container-fluid" ng-controller="ProductCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">产品列表</h5>
+    </div>
+    <div class="pull-right">
+      <a ui-sref="saveProduct" class="btn btn-primary">添加产品</a>
+    </div>
+  </div>
+  <!-- tips -->
+  <div class="alert alert-success" role="alert"><b>提醒：</b><span>点击产品名称可进入该产品的卖点管理页面，点击下拉菜单可进行产品筛选，拖动可进行排序！</span></div>
+  <!-- content -->
+  <div class="container-fluid p0">
+    <select class="form-control bd-category-select pull-left" ng-model="applicationAreaId" ng-options="applicationArea._id as applicationArea.name for applicationArea in applicationAreas"></select>
+    <select class="form-control bd-category-select pull-left" ng-model="productCategoryId" ng-options="productCategory._id as productCategory.name for productCategory in productCategories"></select>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th width="5%">序号</th>
+        <th width="15%">产品名称</th>
+        <th width="15%">应用领域</th>
+        <th width="15%">产品分类</th>
+        <th width="15%">添加日期</th>
+        <th width="15%">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="product in products" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+        <td colspan="6" ng-drag="true" ng-drag-data="product" ng-class="product.name">
+          <table width="100%">
+            <tr>
+              <td style="border:none;" width="5%">{{$index + 1}}</td>
+              <td style="border:none;" width="15%"><a ui-sref="productAdvantages({_id:product._id})" alt="查看卖点" title="查看卖点">{{product.name}}</a></td>
+              <td style="border:none;" width="15%">{{product.applicationArea.name}}</td>
+              <td style="border:none;" width="15%">{{product.applicationArea.category.name}}</td>
+              <td style="border:none;" width="15%">{{product.meta.createdAt|date:'yyyy-MM-dd HH:mm'}}</td>
+              <td style="border:none;" width="15%"><a ui-sref="updateProduct({_id:product._id})">修改</a> | <a href="javascript:" bd-confirm-click="确定删除该产品？" confirmed-click="del(product._id,$index)">删除</a> | <a ui-sref="techSpecs({_id:product._id})">技术规格</a></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

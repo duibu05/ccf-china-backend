@@ -1,0 +1,40 @@
+<!-- Add Administrator Modal -->
+<div class="container-fluid" ng-controller="SaveNewsCtrl">
+  <!-- title -->
+  <div class="dashboard-title clearfix">
+    <div class="pull-left">
+      <h5 class="content-title">{{action}}新闻</h5>
+    </div>
+  </div>
+  <!-- tips -->
+  <!-- <div class="alert alert-success" role="alert"><b>提醒：</b><span>如需要重置管理员密码，请使用<a ui-sref="resetPassword({username:username})">重置密码</a>功能</span></div> -->
+  <!-- content -->
+  <form class="form-horizontal" id="saveNewsForm" name="saveNewsForm" novalidate role="form" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>标题</span>
+      </label>
+      <div class="col-sm-3" ng-class="{'has-success has-feedback':saveNewsForm.title.$valid,'has-error has-feedback':saveNewsForm.title.$invalid&&saveNewsForm.title.$dirty}">
+        <input type="text" class="form-control" placeholder="请输入新闻标题" name="title" ng-model="title" required>
+        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':saveNewsForm.title.$invalid&&saveNewsForm.title.$dirty,'glyphicon-ok':saveNewsForm.title.$valid}"></span>
+        <span class="help-block bd-red" ng-show="saveNewsForm.title.$error.required&&saveNewsForm.title.$dirty">新闻标题为必填项！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">
+        <span class="text-danger">*</span>
+        <span>内容</span>
+      </label>
+      <div class="col-sm-9">
+        <!-- <input type="text" class="form-control" placeholder="请输入管理员姓名" name="content" ng-model="content" required> -->
+        <summernote ng-model="content" config="summernoteOptions" lang="zh-CN" on-image-upload="imageUpload(files)" editor="editor"  editable="editable" required></summernote>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-1">
+        <button type="submit" class="btn btn-primary" ng-disabled="saveNewsForm.$invalid&&saveNewsForm">提交</button>
+      </div>
+    </div>
+  </form>
+</div>

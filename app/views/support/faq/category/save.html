@@ -1,0 +1,107 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>常见问题</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation" class="active"><a ui-sref="faqCategory">问题分类</a></li>
+        <li role="presentation"><a ui-sref="faqs">问题列表</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="SaveFaqCategoryCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">新增问题分类</h5>
+        </div>
+      </div>
+      <!-- content -->
+      <div class="alert alert-success" role="alert"><b>注意：</b>支持批量添加，请参考<a href="javascript:" data-toggle="modal" data-target="#TemplateModal">批量添加模板</a>组织数据！</div>
+      <form class="form-horizontal" id="faqCategoryForm" name="faqCategoryForm" novalidate role="form" ng-submit="identifyFaqCategoryData()">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>问题分类数据</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':faqCategoryForm.faqCategoryData.$valid,'has-error has-feedback':faqCategoryForm.faqCategoryData.$invalid&&faqCategoryForm.eventData.$dirty}">
+            <textarea rows="20" class="form-control" placeholder="请输入问题分类数据" name="faqCategoryData" ng-model="faqCategoryData" required></textarea>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':faqCategoryForm.faqCategoryData.$invalid&&faqCategoryForm.faqCategoryData.$dirty,'glyphicon-ok':faqCategoryForm.faqCategoryData.$valid}"></span>
+            <span class="help-block bd-red" ng-show="faqCategoryForm.faqCategoryData.$error.required&&faqCategoryForm.faqCategoryData.$dirty">问题分类数据为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="submit" class="btn btn-primary" ng-disabled="faqCategoryForm.$invalid" data-toggle="modal" data-target="#IdentifyFaqCategoryModal">识别数据</button>
+          </div>
+        </div>
+      </form>
+      <!-- Identify FaqCategory Modal -->
+      <div class="modal fade" id="IdentifyFaqCategoryModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="IdentifyFaqCategoryModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="IdentifyFaqCategoryModalLabel">识别结果</h4>
+            </div>
+            <div style="padding-left:10px;padding-right:10px">
+              <div class="margin-top-2 alert alert-success">
+                <b>提醒：</b><span>请检查是否和您要录入的信息一致！</span>
+              </div>
+            </div>
+            <div class="modal-body">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>问题分类</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="faqCategory in faqCategories">
+                    <td>{{$index + 1}}</td>
+                    <td>{{faqCategory.title}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-primary" ng-click="confirmAndSubmit()">确认并提交</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Template Modal -->
+<div class="modal fade" id="TemplateModal" tabindex="-1" role="dialog" aria-labelledby="TemplateModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="TemplateModalLabel">批量添加数据模板</h4>
+      </div>
+      <div style="padding-left:10px;padding-right:10px">
+        <div class="margin-top-2 alert alert-success">
+          <b>提醒：</b><span>请按照格式组织数据！</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div>
+          <span>问题分类名称1</span>
+          <br/>
+          <span>问题分类名称2</span>
+          <br/>
+          <span>问题分类名称3</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

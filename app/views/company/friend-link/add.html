@@ -1,0 +1,125 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>友情链接</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="friendLinkCategory">分类</a></li>
+        <li role="presentation" class="active"><a ui-sref="friendLinks">列表</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="SaveFriendLinkCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">新增链接</h5>
+        </div>
+      </div>
+      <!-- content -->
+      <div class="alert alert-success" role="alert"><b>注意：</b>支持批量添加，请参考<a href="javascript:" data-toggle="modal" data-target="#TemplateModal">批量添加模板</a>组织数据！</div>
+      <form class="form-horizontal" id="friendLinkForm" name="friendLinkForm" novalidate role="form" ng-submit="identifyFriendLinkData()">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>友情链接分类</span>
+          </label>
+          <div class="col-sm-3">
+            <select class="form-control bd-category-select pull-left" ng-model='category' required ng-options='category._id as category.title for category in categories'></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>友情链接数据</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':friendLinkForm.friendLinkData.$valid,'has-error has-feedback':friendLinkForm.friendLinkData.$invalid&&friendLinkForm.friendLinkData.$dirty}">
+            <textarea rows="20" class="form-control" placeholder="请输入友情链接数据" name="friendLinkData" ng-model="friendLinkData" required></textarea>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':friendLinkForm.friendLinkData.$invalid&&friendLinkForm.friendLinkData.$dirty,'glyphicon-ok':friendLinkForm.friendLinkData.$valid}"></span>
+            <span class="help-block bd-red" ng-show="friendLinkForm.friendLinkData.$error.required&&friendLinkForm.friendLinkData.$dirty">友情链接数据为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="submit" class="btn btn-primary" ng-disabled="friendLinkForm.$invalid" data-toggle="modal" data-target="#IdentifyFriendLinkModal">识别数据</button>
+          </div>
+        </div>
+      </form>
+      <!-- Identify FriendLink Modal -->
+      <div class="modal fade" id="IdentifyFriendLinkModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="IdentifyFriendLinkModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="IdentifyFriendLinkModalLabel">识别结果</h4>
+            </div>
+            <div style="padding-left:10px;padding-right:10px">
+              <div class="margin-top-2 alert alert-success">
+                <b>提醒：</b><span>请检查是否和您要录入的信息一致！若出现红色则为数据校验失败，请关闭后检查友情链接数据！</span>
+              </div>
+            </div>
+            <div class="modal-body">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>友情链接名称</th>
+                    <th>友情链接地址</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="friendLink in friendLinks" ng-class="{danger:friendLink.invalid}">
+                    <td>{{$index + 1}}</td>
+                    <td>{{friendLink.name}}</td>
+                    <td>{{friendLink.url}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-primary" ng-disabled="!friendLinkValid" ng-click="confirmAndSubmit()">确认并提交</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Template Modal -->
+<div class="modal fade" id="TemplateModal" tabindex="-1" role="dialog" aria-labelledby="TemplateModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="TemplateModalLabel">批量添加数据模板</h4>
+      </div>
+      <div style="padding-left:10px;padding-right:10px">
+        <div class="margin-top-2 alert alert-success">
+          <b>提醒：</b><span>请按照格式组织数据！</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div>
+          <span>友情链接名称1</span>
+          <br/>
+          <span>链接地址1</span>
+          <br/>
+          <span>友情链接名称2</span>
+          <br/>
+          <span>链接地址2</span>
+          <br/>
+          <span>友情链接名称3</span>
+          <br/>
+          <span>链接地址3</span>
+          <br/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="bd-main-container">
+  <div class="bd-sub-sidebar">
+    <div class="sub-sidebar-title">
+      <b>重大事件</b>
+    </div>
+    <div>
+      <ul class="nav nav-pills nav-stacked bd-sub-siderbar-ul">
+        <li role="presentation"><a ui-sref="bigEventCategory">重大事件分类</a></li>
+        <li role="presentation" class="active"><a ui-sref="bigEvents">重大事件列表</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bd-sub-content">
+    <div class="container-fluid" ng-controller="SaveBigEventCtrl">
+      <!-- title -->
+      <div class="dashboard-title clearfix">
+        <div class="pull-left">
+          <h5 class="content-title">新增重大事件</h5>
+        </div>
+      </div>
+      <!-- content -->
+      <div class="alert alert-success" role="alert"><b>注意：</b>支持批量添加，请参考<a href="javascript:" data-toggle="modal" data-target="#TemplateModal">批量添加模板</a>组织数据！</div>
+      <form class="form-horizontal" id="bigEventForm" name="bigEventForm" novalidate role="form" ng-submit="identifyBigEventData()">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>重大事件分类</span>
+          </label>
+          <div class="col-sm-3">
+            <select class="form-control bd-category-select pull-left" ng-model='category' required ng-options='category._id as category.title for category in categories'></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">
+            <span class="text-danger">*</span>
+            <span>重大事件数据</span>
+          </label>
+          <div class="col-sm-5" ng-class="{'has-success has-feedback':bigEventForm.bigEventData.$valid,'has-error has-feedback':bigEventForm.bigEventData.$invalid&&bigEventForm.bigEventData.$dirty}">
+            <textarea rows="20" class="form-control" placeholder="请输入重大事件数据" name="bigEventData" ng-model="bigEventData" required></textarea>
+            <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-warning-sign':bigEventForm.bigEventData.$invalid&&bigEventForm.bigEventData.$dirty,'glyphicon-ok':bigEventForm.bigEventData.$valid}"></span>
+            <span class="help-block bd-red" ng-show="bigEventForm.bigEventData.$error.required&&bigEventForm.bigEventData.$dirty">重大事件数据为必填项！</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="submit" class="btn btn-primary" ng-disabled="bigEventForm.$invalid" data-toggle="modal" data-target="#IdentifyBigEventModal">识别数据</button>
+          </div>
+        </div>
+      </form>
+      <!-- Identify BigEvent Modal -->
+      <div class="modal fade" id="IdentifyBigEventModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="IdentifyBigEventModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="IdentifyBigEventModalLabel">识别结果</h4>
+            </div>
+            <div style="padding-left:10px;padding-right:10px">
+              <div class="margin-top-2 alert alert-success">
+                <b>提醒：</b><span>请检查是否和您要录入的信息一致！若出现红色则为数据校验失败，请关闭后检查重大事件数据！</span>
+              </div>
+            </div>
+            <div class="modal-body">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>重大事件</th>
+                    <th>描述</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="bigEvent in bigEvents" ng-class="{danger:bigEvent.invalid}">
+                    <td>{{$index + 1}}</td>
+                    <td>{{bigEvent.question}}</td>
+                    <td>{{bigEvent.answer}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-primary" ng-disabled="!bigEventValid" ng-click="confirmAndSubmit()">确认并提交</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Template Modal -->
+<div class="modal fade" id="TemplateModal" tabindex="-1" role="dialog" aria-labelledby="TemplateModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="TemplateModalLabel">批量添加数据模板</h4>
+      </div>
+      <div style="padding-left:10px;padding-right:10px">
+        <div class="margin-top-2 alert alert-success">
+          <b>提醒：</b><span>请按照格式组织数据！</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div>
+          <span>重大事件1</span>
+          <br/>
+          <span>描述1</span>
+          <br/>
+          <span>重大事件2</span>
+          <br/>
+          <span>描述2</span>
+          <br/>
+          <span>重大事件3</span>
+          <br/>
+          <span>描述3</span>
+          <br/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
